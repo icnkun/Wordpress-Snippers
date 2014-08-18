@@ -50,7 +50,7 @@ function do_comment_rate(){
 function comment_rate($comment_ID = 0,$echo = true){
 
     $_comment_up = get_comment_meta($comment_ID,'_comment_up',true) ? get_comment_meta($comment_ID,'_comment_up',true) : 0;
-    $_comment_down = get_comment_meta($comment_ID,'_comment_up',true) ? get_comment_meta($comment_ID,'_comment_down',true) : 0 ;
+    $_comment_down = get_comment_meta($comment_ID,'_comment_down',true) ? get_comment_meta($comment_ID,'_comment_down',true) : 0 ;
     $done = "";
     if (isset($_COOKIE['comment_rated_'.$comment_ID])) $done = " rated";
     $content = '<span class="comment--like'.$done.'" data-commentid="'.$comment_ID.'"><a href="javascript:;" data-event="up"><i class="iconfont icon-arrowup"></i><em class="count">'.$_comment_up.'</em></a><a href="javascript:;" data-event="down"><i class="iconfont icon-arrowdown"></i><em class="count">'.$_comment_down.'</em></a></span>';
@@ -71,7 +71,7 @@ add_action('delete_comment', 'delete_comment_ratings_fields');
 function delete_comment_ratings_fields($comment_ID) {
     global $wpdb;
     delete_comment_meta($comment_ID, '_comment_up');
-    delete_comment_meta($comment_ID, '_comment_up');
+    delete_comment_meta($comment_ID, '_comment_down');
 }
 
 ?>
